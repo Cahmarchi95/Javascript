@@ -31,6 +31,7 @@ if (result) {
 //element.appendChild (childElement) serve para "juntar" o que você criou(ex: o texto novo dentro da nova div e essa div dentro do body)
 
 const result = document.querySelector("#result");
+const first = document.querySelector(".red");
 
 //criando um elemento vazio
 const bodyDiv = document.createElement("div");
@@ -42,15 +43,28 @@ const text = document.createTextNode("Criando um texto para a div body");
 //fazendo o append do texto para dentro da div
 bodyDiv.appendChild(text);
 
-//colocando a nova div dentro do body
-document.body.appendChild(bodyDiv);
+//insertBefore (precisa de dois parâmetros o elemento que você quer adicionar "element" e onde você quer adicionar "location")
+document.body.insertBefore(bodyDiv, result);
 
-//outros exemplos
+//colocando a nova div dentro do body
+//document.body.appendChild(bodyDiv);
+
+//outros exemplos, result element
 
 const heading = document.createElement("h2");
 const headingText = document.createTextNode("Adicionando h2 de forma dinâmica");
 heading.appendChild(headingText);
 heading.classList.add("blue");
-result.appendChild(heading);
+//result.appendChild(heading);
+
+result.insertBefore(heading, first);
+
+//criando outra heading para representar o replaceChild (precisa passar o elemento novo e o nome do elemento que você quer substituir)
+
+const smallHeading = document.createElement("h6");
+const smallText = document.createTextNode(`i'm a small text`);
+smallHeading.classList.add("green");
+smallHeading.appendChild(smallText);
+document.body.replaceChild(smallHeading, bodyDiv);
 
 console.log(result.children);
