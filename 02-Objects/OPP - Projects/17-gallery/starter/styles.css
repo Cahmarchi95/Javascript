@@ -72,6 +72,7 @@ body {
   color: var(--clr-grey-1);
   line-height: 1.5;
   font-size: 0.875rem;
+  
 }
 ul {
   list-style-type: none;
@@ -188,7 +189,7 @@ Modal
   transition: var(--transition);
   opacity: 0;
   min-height: 100vh;
-  overflow: scroll;
+  overflow: hidden;
 }
 .modal.open {
   opacity: 1;
@@ -234,7 +235,7 @@ Modal
   width: 80%;
   max-width: var(--max-width);
   margin: 0 auto;
-  margin-top: 10rem;
+  margin-top: 5rem;
   position: relative;
 }
 .main-img {
