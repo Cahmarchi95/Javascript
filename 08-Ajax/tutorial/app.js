@@ -1,34 +1,28 @@
-//JSON = Javascript Object Notation
+//Fetch with async/await
+//try catch
 
-const xhr = new XMLHttpRequest();
-console.log(xhr);
-const btn = document.querySelector(".btn");
 const url = "./api/people.json";
-btn.addEventListener("click", () => {
-  getData(url);
+
+const btn = document.querySelector(".btn");
+
+btn.addEventListener("click", async () => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    displayItems(data);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
-function getData(url) {
-  xhr.open("GET", url);
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      const data = JSON.parse(xhr.responseText);
-      //JSON.parse = transforma a string em objeto
-      const displayData = data
-        .map((item) => {
-          return `<p>${item.name}</p>`;
-        })
-        .join("");
-      const element = document.createElement("div");
-      element.innerHTML = displayData
-      document.body.appendChild(element)
-    } else {
-      console.log({
-        status: xhr.status,
-        text: xhr.statusText,
-        sate: xhr.readyState,
-      });
-    }
-  };
-  xhr.send();
-}
+const displayItems = (items) => {
+  const displayData = items
+    .map((item) => {
+      const { name } = item;
+      return `<p>${name}</p>`;
+    })
+    .join("");
+  const element = document.createElement("div");
+  element.innerHTML = displayData;
+  document.body.appendChild(element);
+};
